@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -29,7 +31,7 @@ class Post(models.Model):
     author = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    content = models.TextField()
+    content = RichTextField()
     slug = models.SlugField(max_length=500, null=True, blank=True, unique=True)
     status = models.CharField(choices=STATUS, max_length=100)
     section = models.CharField(choices=SECTION, max_length=200)
